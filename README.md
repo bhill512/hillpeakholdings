@@ -9,6 +9,7 @@ Single-page landing site for **Hill Peak Holdings, LLC** where business brokers 
 - `script.js`: accessible modal behavior + Formspree form submission
 - `buyer-profile.pdf`: **optional** placeholder file referenced by the page (add your real PDF)
 - `buyer-profile.html`: print-friendly buyer profile page (you can “Print to PDF”)
+- `logo.svg`: simple brand mark used in the header
 
 ## Local preview
 
