@@ -159,7 +159,6 @@ code {
   width: 34px;
   height: 34px;
   flex: 0 0 auto;
-  filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
 }
 
 .brand-text {

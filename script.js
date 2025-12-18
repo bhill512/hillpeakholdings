@@ -32,6 +32,17 @@
     document.body.style.overflow = open ? "hidden" : "";
   }
 
+  function setBackgroundA11yHidden(hidden) {
+    const header = document.querySelector(".site-header");
+    const main = document.getElementById("main");
+    const footer = document.querySelector(".site-footer");
+    [header, main, footer].forEach((el) => {
+      if (!el) return;
+      if (hidden) el.setAttribute("aria-hidden", "true");
+      else el.removeAttribute("aria-hidden");
+    });
+  }
+
   function openModalById(id, triggerEl) {
     const modalEl = document.getElementById(id);
     if (!modalEl) return;
@@ -40,8 +51,10 @@
     state.openModal = modalEl;
 
     setModalOpen(modalEl, true);
+    setBackgroundA11yHidden(true);
 
     const panel = $(".modal-panel", modalEl);
+    if (panel) panel.scrollTop = 0;
     // Let the browser paint, then focus something sensible.
     window.setTimeout(() => {
       const focusables = panel ? getFocusable(panel) : [];
@@ -53,6 +66,7 @@
   function closeModal(modalEl) {
     if (!modalEl) return;
     setModalOpen(modalEl, false);
+    setBackgroundA11yHidden(false);
 
     if (state.lastActiveEl && typeof state.lastActiveEl.focus === "function") {
       state.lastActiveEl.focus();
