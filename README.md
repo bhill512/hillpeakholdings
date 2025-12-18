@@ -7,7 +7,7 @@ Single-page landing site for **Hill Peak Holdings, LLC** where business brokers 
 - `index.html`: page content + broker submission modal
 - `styles.css`: shared visual system (container, sections, cards, buttons, modal, etc.)
 - `script.js`: accessible modal behavior + Formspree form submission
-- `buyer-profile.pdf`: **optional** placeholder file referenced by the page (add your real PDF)
+- `buyer-profile.pdf`: downloadable one-page buyer profile (generated from `buyer-profile.html`)
 - `buyer-profile.html`: print-friendly buyer profile page (you can “Print to PDF”)
 - `logo.svg`: simple brand mark used in the header
 
@@ -79,12 +79,11 @@ In Cloudflare Pages:
 - **Custom domains** → add your domain
 - Follow Cloudflare’s DNS instructions
 
-## Optional: Add the one-page buyer profile PDF
+## Buyer profile PDF
 
-The page links to `./buyer-profile.pdf`. To enable it:
+The page links to `./buyer-profile.pdf` and the repo includes a generated PDF.
 
-- Add your PDF file to the project root named `buyer-profile.pdf`
-- Commit and push; Cloudflare Pages will redeploy automatically
+- To replace it with your own PDF: overwrite `buyer-profile.pdf`, commit, and push.
 
 ## Optional: Generate a PDF from the included buyer profile page
 
@@ -93,6 +92,14 @@ The page links to `./buyer-profile.pdf`. To enable it:
 - Open `buyer-profile.html` in your browser
 - Use the browser’s **Print** dialog
 - Choose **Save as PDF**
+
+### Regenerate `buyer-profile.pdf` (headless Chrome)
+
+If you have Google Chrome installed, you can regenerate the PDF from the HTML:
+
+```bash
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --headless=new --disable-gpu --print-to-pdf="buyer-profile.pdf" "file:///ABSOLUTE_PATH_TO/buyer-profile.html"
+```
 
 ## Optional: Use a different POST endpoint (instead of Formspree)
 
