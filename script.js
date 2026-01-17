@@ -177,13 +177,13 @@
     // Honeypot: treat as success (silently) to avoid signaling bots.
     const gotcha = form.elements._gotcha ? String(form.elements._gotcha.value || "").trim() : "";
     if (gotcha) {
-      setStatus("is-success", "Thanks — your submission has been received.");
+      setStatus("is-success", "Thanks — received. We’ll review and respond quickly.");
       form.reset();
       return;
     }
 
     if (!validateRequired()) {
-      setStatus("is-error", "Please complete the required fields before submitting.");
+      setStatus("is-error", "Please complete the required fields, then submit.");
       return;
     }
 
@@ -200,7 +200,7 @@
     const formData = new FormData(form);
 
     setBusy(true);
-    setStatus("is-info", "Submitting…");
+    setStatus("is-info", "Sending…");
 
     try {
       const res = await fetch(endpoint, {
@@ -214,14 +214,14 @@
       if (res.ok) {
         setStatus(
           "is-success",
-          "Submitted. Thank you — we’ll review and respond quickly."
+          "Submitted. Thank you — we’ll review and get back to you quickly."
         );
         form.reset();
         return;
       }
 
       // Try to surface a helpful error if Formspree returns JSON.
-      let msg = "Something went wrong while submitting. Please try again or email us directly.";
+      let msg = "Something went wrong. Please try again, or email owner@hillpeakholdings.com.";
       try {
         const data = await res.json();
         if (data && data.errors && Array.isArray(data.errors) && data.errors.length) {
@@ -234,7 +234,7 @@
     } catch (err) {
       setStatus(
         "is-error",
-        "Network error. Please try again in a moment or email owner@hillpeakholdings.com."
+        "Network error. Please try again in a moment, or email owner@hillpeakholdings.com."
       );
     } finally {
       setBusy(false);
